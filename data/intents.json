@@ -1,0 +1,271 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hello",
+        "Hey there",
+        "Good morning",
+        "Good afternoon",
+        "Good evening",
+        "Greetings",
+        "Howdy",
+        "Hey",
+        "Hi chatbot",
+        "Hello AI helpdesk",
+        "Is anyone available?"
+      ],
+      "responses": [
+        "Hello! Welcome to AI Helpdesk. How can I assist you today?",
+        "Hi there! I am your ML-powered assistant. What can I help you with?",
+        "Greetings! How may I assist you with your queries today?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Goodbye",
+        "Bye",
+        "See you later",
+        "Have a good day",
+        "Catch you later",
+        "I am leaving now",
+        "Talk to you later",
+        "Farewell",
+        "Bye bye",
+        "Signing off"
+      ],
+      "responses": [
+        "Goodbye! Have a great day ahead!",
+        "Thank you for reaching out to AI Helpdesk. Bye!",
+        "Take care! Feel free to ask if you need help later."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thank you",
+        "Thanks a lot",
+        "Thank you so much",
+        "Appreciate your help",
+        "Thanks for assistance",
+        "That was very helpful",
+        "Awesome thanks",
+        "Much appreciated",
+        "Thank you bot",
+        "Many thanks"
+      ],
+      "responses": [
+        "You're very welcome! Glad I could help.",
+        "Anytime! Let me know if you have more questions.",
+        "It's my pleasure to help you!"
+      ]
+    },
+    {
+      "tag": "capabilities",
+      "patterns": [
+        "What can you do?",
+        "What can you help me with?",
+        "What are your features?",
+        "How can you assist me?",
+        "What kind of questions can I ask?",
+        "Tell me about your capabilities",
+        "What is your purpose?",
+        "Show me help options",
+        "What services do you provide?"
+      ],
+      "responses": [
+        "I am an ML-driven helpdesk chatbot. I can assist with account creation, password resets, order tracking, cancellations, refunds, payment issues, and technical support!",
+        "You can ask me about account settings, orders, shipping status, refunds, support hours, and technical issues. Just type your query!"
+      ]
+    },
+    {
+      "tag": "account_creation",
+      "patterns": [
+        "How do I create an account?",
+        "How can I register?",
+        "I want to sign up",
+        "Steps to create a new profile",
+        "Where do I sign up?",
+        "How to open a new user account?",
+        "Registration process details",
+        "I need a new user account",
+        "Can I register online?",
+        "Create profile"
+      ],
+      "responses": [
+        "To create an account, click the 'Sign Up' button on our homepage, enter your email and password, and follow the verification instructions.",
+        "You can register easily by going to the registration page, providing your basic info, and verifying your email address."
+      ]
+    },
+    {
+      "tag": "password_reset",
+      "patterns": [
+        "How can I reset my password?",
+        "I forgot my password",
+        "Password reset procedure",
+        "I cannot log in to my account password issue",
+        "Reset password link request",
+        "Change my account password",
+        "Forgot login password details",
+        "How to recover lost password?",
+        "Lost my password what to do"
+      ],
+      "responses": [
+        "To reset your password, navigate to the Login page and click 'Forgot Password'. A reset link will be sent to your registered email.",
+        "Don't worry! You can easily reset your password by selecting 'Forgot Password' on the login screen and following the emailed steps."
+      ]
+    },
+    {
+      "tag": "support_contact",
+      "patterns": [
+        "How can I contact support?",
+        "What is your support email?",
+        "Customer service phone number",
+        "I want to speak with a human support agent",
+        "Contact info for customer care representative",
+        "Reach out to customer support team",
+        "Support phone number help",
+        "How to talk to human help desk?"
+      ],
+      "responses": [
+        "You can reach our customer support team via email at support@example.com or call us directly at 1-800-555-0199.",
+        "Our support representatives are available via email (support@example.com) or phone (1-800-555-0199) to assist you."
+      ]
+    },
+    {
+      "tag": "working_hours",
+      "patterns": [
+        "What are your working hours?",
+        "When are you open?",
+        "Operating hours of customer service",
+        "What time does support open and close?",
+        "Are you open on weekends?",
+        "Business hours info",
+        "Support availability hours details",
+        "When can I call customer support?"
+      ],
+      "responses": [
+        "Our customer service line is open Monday through Friday, 8:00 AM to 8:00 PM EST, and Saturday 9:00 AM to 5:00 PM EST.",
+        "We are available Monday to Friday from 8 AM to 8 PM EST. Automated ML assistance is available 24/7!"
+      ]
+    },
+    {
+      "tag": "order_help",
+      "patterns": [
+        "I need help with my order",
+        "Query regarding my recent order purchase",
+        "General order issue",
+        "Problem with my order package",
+        "Order details information help",
+        "Where is my order placed?",
+        "I have a question about my purchase item",
+        "Items missing in my recent order"
+      ],
+      "responses": [
+        "I'd be glad to help with your order! Please check your order summary page or specify whether you need tracking, cancellation, or refund assistance.",
+        "For order assistance, you can view your purchases under 'My Orders' in your account dashboard."
+      ]
+    },
+    {
+      "tag": "order_tracking",
+      "patterns": [
+        "How can I track my order?",
+        "Where is my shipment parcel?",
+        "Track package status",
+        "Check shipment tracking status",
+        "Shipping status update",
+        "When will my order parcel arrive?",
+        "Tracking number lookup",
+        "Has my parcel shipped yet?"
+      ],
+      "responses": [
+        "You can track your package by logging into your account, navigating to 'My Orders', and clicking 'Track Package'. You can also use the tracking link sent to your email.",
+        "To check shipment progress, enter your tracking ID on our order tracking page or visit the 'My Orders' section."
+      ]
+    },
+    {
+      "tag": "order_cancellation",
+      "patterns": [
+        "I want to cancel my order",
+        "How to cancel a placed order?",
+        "Can I abort my order?",
+        "Cancel item in my order purchase",
+        "Stop shipment of my order",
+        "I bought the wrong item please cancel order",
+        "Revoke order request"
+      ],
+      "responses": [
+        "You can cancel your order within 2 hours of placing it by visiting 'My Orders' and selecting 'Cancel Order'. If it has already shipped, you may request a return upon delivery.",
+        "To request cancellation, go to your order details page. If the status is still 'Processing', click 'Cancel Order'."
+      ]
+    },
+    {
+      "tag": "refund_request",
+      "patterns": [
+        "How can I get a refund?",
+        "I want my money back refund",
+        "Request a refund payment",
+        "Refund policy and process details",
+        "When will I receive my refund money?",
+        "Return item for full refund",
+        "How long does refund processing take?",
+        "Money reimbursement process for return"
+      ],
+      "responses": [
+        "Refunds are processed within 5-7 business days after we receive and inspect your returned item. You can initiate a refund from your Account dashboard under 'Returns'.",
+        "To claim a refund, submit a return request in the 'My Orders' section. Once approved, the amount will be credited back to your original payment method."
+      ]
+    },
+    {
+      "tag": "payment_issue",
+      "patterns": [
+        "Payment failed during checkout process",
+        "My credit card was charged twice",
+        "Payment gateway error on website",
+        "Declined credit card transaction help",
+        "Billing issue with order payment",
+        "Money deducted but order failed",
+        "Payment transaction failure"
+      ],
+      "responses": [
+        "If your payment failed or you were charged twice, please check your bank statement. Any pending unconfirmed charges are typically auto-refunded within 24-48 hours. Contact support@example.com if issues persist.",
+        "For billing errors or duplicate charges, please share your transaction reference ID with our support team at support@example.com."
+      ]
+    },
+    {
+      "tag": "technical_issue",
+      "patterns": [
+        "The application is crashing constantly",
+        "Website is not loading properly error",
+        "I am facing a technical bug glitch",
+        "Error page loading broken issue",
+        "Button not working on website page",
+        "Technical error code encountered",
+        "The screen is frozen and stuck",
+        "Bug on your website platform"
+      ],
+      "responses": [
+        "We apologize for the inconvenience! Please try clearing your browser cache and cookies, or try using an incognito window. If the issue persists, let support know.",
+        "For technical glitches, ensure your browser is up to date. You can report technical bugs directly to tech-support@example.com."
+      ]
+    },
+    {
+      "tag": "feedback",
+      "patterns": [
+        "I want to leave feedback",
+        "How to submit a service review?",
+        "I have a suggestion for your application",
+        "Rate customer support service",
+        "Give user feedback rating",
+        "Improve your platform features",
+        "Share my experience feedback"
+      ],
+      "responses": [
+        "We value your input! You can submit feedback or reviews through our Feedback Form link in the footer or email feedback@example.com.",
+        "Thank you for helping us improve! Please submit your comments on our website feedback page or share them right here."
+      ]
+    }
+  ]
+}

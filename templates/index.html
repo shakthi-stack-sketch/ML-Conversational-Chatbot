@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Helpdesk - ML Conversational Chatbot</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome / Feather SVG Icons via CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation Header -->
+        <header class="app-header">
+            <div class="header-brand">
+                <div class="brand-logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        <line x1="9" y1="10" x2="15" y2="10"></line>
+                        <line x1="12" y1="7" x2="12" y2="13"></line>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h1>AI Helpdesk</h1>
+                    <span class="subtitle">Supervised ML Intent Classification (TF-IDF + Logistic Regression)</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button id="clearChatBtn" class="btn btn-secondary" title="Clear Chat History">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    <span>Clear Chat</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Layout -->
+        <div class="dashboard-body">
+            <!-- Sidebar / ML Information Panel -->
+            <aside class="ml-sidebar">
+                <!-- System Info Card -->
+                <div class="sidebar-card info-card">
+                    <div class="card-header">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        <h3>ML System Info</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-row">
+                            <span class="label">Model:</span>
+                            <span class="value badge">Logistic Regression</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Vectorizer:</span>
+                            <span class="value badge">TF-IDF (Unigram & Bigram)</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Intents:</span>
+                            <span class="value">15 Classes</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Threshold:</span>
+                            <span class="value">30% Confidence</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live ML Analysis Panel -->
+                <div class="sidebar-card analysis-card">
+                    <div class="card-header">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                        <h3>Live ML Analysis</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="analysis-item">
+                            <span class="analysis-label">Predicted Intent</span>
+                            <div id="intentBadge" class="intent-tag waiting">None</div>
+                        </div>
+
+                        <div class="analysis-item">
+                            <div class="confidence-header">
+                                <span class="analysis-label">Confidence Score</span>
+                                <span id="confidenceValue" class="confidence-val">0.0%</span>
+                            </div>
+                            <div class="confidence-bar-wrapper">
+                                <div id="confidenceBar" class="confidence-bar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+
+                        <div id="statusAlert" class="status-alert hidden">
+                            <span id="statusText">Awaiting user input...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suggested Questions Section -->
+                <div class="sidebar-card suggestions-card">
+                    <div class="card-header">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                        </svg>
+                        <h3>Suggested Queries</h3>
+                    </div>
+                    <div class="card-content chips-container">
+                        <button class="chip-btn" data-query="How can I reset my password?">Reset Password</button>
+                        <button class="chip-btn" data-query="How can I track my order?">Track Order</button>
+                        <button class="chip-btn" data-query="What are your working hours?">Working Hours</button>
+                        <button class="chip-btn" data-query="How can I get a refund?">Request Refund</button>
+                        <button class="chip-btn" data-query="How can I contact support?">Contact Support</button>
+                        <button class="chip-btn" data-query="What can you help me with?">Capabilities</button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Chat Main Area -->
+            <main class="chat-main">
+                <!-- Message Window -->
+                <div id="chatWindow" class="chat-window">
+                    <!-- Welcome / Empty State Card -->
+                    <div id="welcomeState" class="welcome-card">
+                        <div class="welcome-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                        </div>
+                        <h2>Welcome to AI Helpdesk!</h2>
+                        <p>Ask any customer support question. The chatbot will preprocess your text, convert it using TF-IDF features, and predict the intent using a trained Logistic Regression model.</p>
+                        <div class="welcome-chips">
+                            <span>Popular prompts:</span>
+                            <div class="prompt-chips">
+                                <button class="prompt-chip" data-query="How do I create an account?">"How do I create an account?"</button>
+                                <button class="prompt-chip" data-query="I want to cancel my order">"I want to cancel my order"</button>
+                                <button class="prompt-chip" data-query="Website is not loading properly">"Website is not loading properly"</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Messages list will be dynamically rendered here -->
+                </div>
+
+                <!-- Typing Indicator -->
+                <div id="typingIndicator" class="typing-indicator hidden">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <span class="typing-text">AI Helpdesk is classifying intent...</span>
+                </div>
+
+                <!-- Input Footer -->
+                <footer class="chat-input-area">
+                    <div id="speechStatus" class="speech-status hidden">
+                        <span class="pulse-dot"></span>
+                        <span>Listening... Speak into your microphone</span>
+                    </div>
+                    <form id="chatForm" class="input-form" autocomplete="off">
+                        <div class="input-wrapper">
+                            <input type="text" id="userInput" placeholder="Type your message here... (e.g. How can I reset my password?)" required />
+                            
+                            <!-- Microphone Button -->
+                            <button type="button" id="micBtn" class="action-btn mic-btn" title="Speech Input (Web Speech API)">
+                                <svg id="micIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                    <line x1="12" y1="19" x2="12" y2="23"></line>
+                                    <line x1="8" y1="23" x2="16" y2="23"></line>
+                                </svg>
+                            </button>
+
+                            <!-- Send Button -->
+                            <button type="submit" id="sendBtn" class="action-btn send-btn" title="Send Message">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <!-- Application Script -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
